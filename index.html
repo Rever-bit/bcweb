@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage Web3 Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📦 Storage Web3 Panel</h1>
+            <button id="connectWalletBtn" class="btn-primary">Cüzdanı Bağla</button>
+            <p id="walletAddress" class="sub-text">Cüzdan bağlı değil</p>
+        </header>
+
+        <main>
+            <section class="card">
+                <h3>🔧 Kontrat Ayarları</h3>
+                <div class="form-group">
+                    <label for="contractAddressInput">Kontrat Adresi (Sepolia):</label>
+                    <input type="text" id="contractAddressInput" placeholder="0x...">
+                </div>
+                <div class="form-group">
+                    <label for="contractAbiInput">Contract ABI (JSON formatında):</label>
+                    <textarea id="contractAbiInput" rows="4" placeholder='[{"inputs":[],"name":"retrieveAll",...}]'></textarea>
+                </div>
+                <button id="saveContractBtn" class="btn-secondary">Kontratı Tanımla ve Başlat</button>
+                <p id="contractStatus" class="status-text text-warning">Kontrat henüz tanımlanmadı.</p>
+            </section>
+
+            <section id="mainPanel" class="card hidden">
+                <div class="info-grid">
+                    <div>
+                        <strong>Kontrat Sahibi (Owner):</strong>
+                        <span id="contractOwner">Yükleniyor...</span>
+                    </div>
+                    <div>
+                        <strong>Toplam Eleman Sayısı:</strong>
+                        <span id="totalElements">0</span>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div id="ownerSection" class="owner-zone">
+                    <h3>👑 Sahip (Owner) Paneli</h3>
+                    <p class="zone-notice">Aşağıdaki işlem sadece kontrat sahibinin cüzdanı bağlıyken çalışır.</p>
+                    <div class="action-row">
+                        <input type="number" id="numberInput" placeholder="Eklenecek sayı">
+                        <button id="storeBtn" class="btn-success">Diziye Sayı Ekle (store)</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="read-zone">
+                    <h3>📊 Dizideki Sayılar</h3>
+                    <div class="action-row">
+                        <button id="refreshBtn" class="btn-info">Listeyi Yenile</button>
+                    </div>
+                    <ul id="numbersList" class="numbers-list">
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
